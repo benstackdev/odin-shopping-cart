@@ -1,20 +1,17 @@
-import { Link, Outlet } from "react-router";
+import { Outlet } from "react-router";
+import { Nav } from "./components/Nav";
 
 function Root() {
   return (
-    <>
+    <div className={`min-h-dvh flex flex-col`}>
       <header>
-        <nav>
-          <ul>
-            <li><Link to={""}>Home</Link></li>
-            <li><Link to={"shop"}>Shop</Link></li>
-            <li><Link to={"cart"}>My Cart</Link></li>
-          </ul>
-        </nav>
+        <Nav />
       </header>
       <br />
-      <Outlet />
-    </>
+      <div className={`flex flex-col align-center mt-8 flex-1`}>
+        <Outlet />
+      </div>
+    </div>
   );
 }
 

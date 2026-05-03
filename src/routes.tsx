@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router";
-import { Home } from "./components/Home";
-import { Shop } from "./components/Shop";
-import { Cart } from "./components/Cart";
+import { Home } from "./pages/Home";
+import { Shop } from "./pages/Shop";
+import { Cart } from "./pages/Cart";
 import Root from "./Root";
 
 const routes: RouteObject[] = [
