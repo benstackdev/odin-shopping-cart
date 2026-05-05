@@ -1,10 +1,25 @@
 import { PageHeading } from "../components/PageHeading";
+import { ProductCard } from "../components/ProductCard";
+import { useData } from "../hooks/useData";
+import type { ProductType } from "../types/product.type";
 
 const Shop = () => {
+  const { data }: { data: ProductType[]; } = useData("/products");
+
   return (
-    <section>
+    <div>
       <PageHeading>My Shop</PageHeading>
-    </section>
+      <section className={`mt-8 grid grid-cols-2 lg:grid-cols-3 gap-4 p-4`}>
+        {!data ?
+          <p>Loading...</p> :
+          data.map((product) => {
+            return (
+              <ProductCard key={product.id} productData={product} />
+            );
+          })
+        }
+      </section>
+    </div>
   );
 };
 
