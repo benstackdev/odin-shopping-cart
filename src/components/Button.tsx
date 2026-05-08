@@ -11,7 +11,7 @@ const buttonStyles = cva([`font-semibold inline-flex justify-center items-center
     background: {
       white: "text-black bg-white border-2 hover:bg-gray-100",
       green: "text-white bg-emerald-400 hover:bg-emerald-700",
-      grey: "text-gray-900 bg-gray-300 hover:bg-gray-400",
+      grey: "text-gray-900 bg-gray-300 enabled:hover:bg-gray-400",
       red: "text-red-950 bg-red-300 hover:bg-red-400"
     }
   },

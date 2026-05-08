@@ -5,7 +5,12 @@ import type { CartItem } from "../types/cart_item.type";
 import { useCartStore } from "../stores/cartStore";
 import { useState } from "react";
 
-const ProductCard = ({ productData }: { productData: ProductType; }) => {
+export type ProductCardProps = {
+  productData: ProductType,
+  isCart?: boolean;
+};
+
+const ProductCard = ({ productData, isCart }: ProductCardProps) => {
   const items = useCartStore((state) => state.items);
   const addCartItem = useCartStore((state) => state.addCartItem);
   const updateCartItemQuantity = useCartStore((state) => state.updateCartItemQuantity);
@@ -75,15 +80,19 @@ const ProductCard = ({ productData }: { productData: ProductType; }) => {
           Add to Cart
         </Button>
         :
-        <div className={`flex flex-col md:flex-row gap-2`}>
-          <Button
-            className={`flex-1 justify-center gap-2`}
-            size="small"
-            background="grey"
-            type="button">
-            <ShoppingCart />
-            In Cart
-          </Button>
+        <div className={`flex gap-2`}>
+          {!isCart ?
+            <Button
+              className={`flex-1 justify-center gap-2`}
+              size="small"
+              background="grey"
+              type="button"
+              disabled>
+              <ShoppingCart />
+              In Cart
+            </Button>
+            : null
+          }
           <Button
             className={`flex-1 inline-flex justify-center gap-2`}
             size="small"
