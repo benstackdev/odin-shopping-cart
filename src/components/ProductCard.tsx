@@ -89,7 +89,10 @@ const ProductCard = ({ productData }: { productData: ProductType; }) => {
             size="small"
             background="red"
             type="button"
-            onClick={() => removeCartItem(productData.id)}>
+            onClick={() => {
+              removeCartItem(productData.id);
+              setQuantity(1);
+            }}>
             <X />
             Remove
           </Button>
