@@ -1,6 +1,9 @@
 import { Link } from "react-router";
+import { useCartStore } from "../stores/cartStore";
 
 const Nav = () => {
+  const totalItems = useCartStore((state) => state.totalItems);
+
   return (
     <nav className={`flex justify-center`}>
       <ul className={
@@ -9,7 +12,7 @@ const Nav = () => {
       }>
         <li><Link to={""}>Home</Link></li>
         <li><Link to={"shop"}>Shop</Link></li>
-        <li><Link to={"cart"}>My Cart</Link></li>
+        <li><Link to={"cart"}>My Cart <span>({`${totalItems}`})</span></Link></li>
       </ul>
     </nav>
   );

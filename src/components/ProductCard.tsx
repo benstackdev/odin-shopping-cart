@@ -1,21 +1,26 @@
-import { Minus, Plus, ShoppingCart } from "lucide-react";
+import { Minus, Plus, ShoppingCart, X } from "lucide-react";
 import type { ProductType } from "../types/product.type";
 import { Button } from "./Button";
 import type { CartItem } from "../types/cart_item.type";
 import { useCartStore } from "../stores/cartStore";
 import { useState } from "react";
 
-
 const ProductCard = ({ productData }: { productData: ProductType; }) => {
-  const [productQuantity, setProductQuantity] = useState(1);
-
+  const items = useCartStore((state) => state.items);
   const addCartItem = useCartStore((state) => state.addCartItem);
   const updateCartItemQuantity = useCartStore((state) => state.updateCartItemQuantity);
+  const removeCartItem = useCartStore((state) => state.removeCartItem);
+
+  const itemInCart = () => {
+    return items.find((item) => item.id === productData.id);
+  };
+
+  const [quantity, setQuantity] = useState(itemInCart() ? itemInCart().quantity : 1);
 
   const updateQuantity = (newQuantity: number) => {
     if (newQuantity < 1 || newQuantity > 99) return;
-    setProductQuantity(newQuantity);
-    updateCartItemQuantity(productData.id, newQuantity);
+    if (itemInCart()) updateCartItemQuantity(productData.id, newQuantity);
+    setQuantity(newQuantity);
   };
 
   return (
@@ -36,7 +41,7 @@ const ProductCard = ({ productData }: { productData: ProductType; }) => {
         }</span>
         <div className={`flex justify-start gap-2`}>
           <Button size="smallIcon"
-            onClick={() => updateQuantity(productQuantity - 1)}>
+            onClick={() => updateQuantity(quantity - 1)}>
             <Minus />
           </Button>
           <input
@@ -44,30 +49,52 @@ const ProductCard = ({ productData }: { productData: ProductType; }) => {
             id={`${productData.id}-quantity`}
             min={1} max={99}
             className={`text-center remove-arrow`}
-            value={productQuantity}
+            value={quantity}
             onChange={e => updateQuantity(Number(e.target.value))}
           />
           <Button size="smallIcon" className={``}
-            onClick={() => updateQuantity(productQuantity + 1)}>
+            onClick={() => updateQuantity(quantity + 1)}>
             <Plus />
           </Button>
         </div>
       </div>
-      <Button
-        className={`inline-flex justify-center gap-2`}
-        size="small"
-        background="green"
-        type="button"
-        onClick={() => addCartItem({
-          id: productData.id,
-          title: productData.title,
-          price: productData.price,
-          image: productData.image,
-          quantity: productQuantity
-        } as CartItem)}>
-        <ShoppingCart />
-        Add to Cart
-      </Button>
+      {!itemInCart() ?
+        <Button
+          className={`inline-flex justify-center gap-2`}
+          size="small"
+          background="green"
+          type="button"
+          onClick={() => addCartItem({
+            id: productData.id,
+            title: productData.title,
+            price: productData.price,
+            image: productData.image,
+            quantity: quantity
+          } as CartItem)}>
+          <ShoppingCart />
+          Add to Cart
+        </Button>
+        :
+        <div className={`flex flex-col md:flex-row gap-2`}>
+          <Button
+            className={`flex-1 justify-center gap-2`}
+            size="small"
+            background="grey"
+            type="button">
+            <ShoppingCart />
+            In Cart
+          </Button>
+          <Button
+            className={`flex-1 inline-flex justify-center gap-2`}
+            size="small"
+            background="red"
+            type="button"
+            onClick={() => removeCartItem(productData.id)}>
+            <X />
+            Remove
+          </Button>
+        </div>
+      }
     </div>
   );
 };
