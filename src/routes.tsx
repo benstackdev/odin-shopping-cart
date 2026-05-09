@@ -3,15 +3,17 @@ import { Home } from "./pages/Home";
 import { Shop } from "./pages/Shop";
 import { Cart } from "./pages/Cart";
 import Root from "./Root";
+import { ErrorPage } from "./pages/ErrorPage";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     Component: Root,
+    ErrorBoundary: ErrorPage,
     children: [
       {
         index: true, // index specifies the root path (no subpath)
-        Component: Home
+        Component: Home,
       },
       {
         path: "shop",
