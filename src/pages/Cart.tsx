@@ -1,3 +1,4 @@
+import { Loading } from "../components/Loading";
 import { PageHeading } from "../components/PageHeading";
 import { ProductCard } from "../components/ProductCard";
 import { useData } from "../hooks/useData";
@@ -14,7 +15,7 @@ const Cart = () => {
       <PageHeading>My Cart</PageHeading>
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
         {!data ?
-          <p>Loading...</p> :
+          <Loading /> :
           cartItems.map((item: CartItem) => {
             return (
               <ProductCard productData={data.find((product) => product.id === item.id)} isCart={true} />
