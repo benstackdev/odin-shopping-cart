@@ -16,11 +16,13 @@ const Cart = () => {
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
         {!data ?
           <Loading /> :
-          cartItems.map((item: CartItem) => {
-            return (
-              <ProductCard productData={data.find((product) => product.id === item.id)} isCart={true} />
-            );
-          })}
+          cartItems.length === 0 ?
+            <p className={`flex justify-center text-lg lg:text-2xl`}>No items in cart</p> :
+            cartItems.map((item: CartItem) => {
+              return (
+                <ProductCard productData={data.find((product) => product.id === item.id)} isCart={true} />
+              );
+            })}
       </section>
     </div>
   );
