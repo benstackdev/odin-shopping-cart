@@ -5,11 +5,13 @@ const headingStyles = cva([`
 ]);
 
 export interface PageHeadingProps extends React.ComponentProps<'h1'>,
-  VariantProps<typeof headingStyles> { }
+  VariantProps<typeof headingStyles> {
+  dataTestId: string;
+}
 
 const PageHeading = ({ ...props }: PageHeadingProps) => {
   return (
-    <h1 className={headingStyles()}>{props.children}</h1>
+    <h1 className={headingStyles()} data-testid={props.dataTestId}>{props.children}</h1>
   );
 };
 

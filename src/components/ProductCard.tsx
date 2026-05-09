@@ -101,6 +101,7 @@ const ProductCard = ({ productData, isCart }: ProductCardProps) => {
             size="small"
             background="red"
             type="button"
+            data-testid="remove-from-cart"
             onClick={() => {
               removeCartItem(productData.id);
               setQuantity(1);

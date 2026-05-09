@@ -12,7 +12,7 @@ const Cart = () => {
 
   return (
     <div>
-      <PageHeading>My Cart</PageHeading>
+      <PageHeading dataTestId="cart-heading">My Cart</PageHeading>
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
         {!data ?
           <Loading /> :
