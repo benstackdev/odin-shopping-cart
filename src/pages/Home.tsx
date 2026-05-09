@@ -9,7 +9,7 @@ const Home = () => {
         <PageHeading>
           Welcome to <b>BenStack's Shop!</b>
         </PageHeading>
-        <div className={`bg-[url(src/assets/shopping-bags.svg)] 
+        <div className={`bg-[url(/src/assets/shopping-bags.svg)] 
           bg-contain size-100 lg:size-150 mx-auto`}>
         </div>
       </section>
