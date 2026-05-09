@@ -8,7 +8,7 @@ const Shop = () => {
 
   return (
     <div>
-      <PageHeading>My Shop</PageHeading>
+      <PageHeading data-testid="shop-heading">My Shop</PageHeading>
       <section className={`mt-8 grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
         {!data ?
           <p>Loading...</p> :

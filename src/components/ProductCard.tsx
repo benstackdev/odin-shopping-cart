@@ -46,6 +46,7 @@ const ProductCard = ({ productData, isCart }: ProductCardProps) => {
         }</span>
         <div className={`flex justify-start gap-2`}>
           <Button size="smallIcon"
+            type="button"
             onClick={() => updateQuantity(quantity - 1)}>
             <Minus />
           </Button>
@@ -58,6 +59,7 @@ const ProductCard = ({ productData, isCart }: ProductCardProps) => {
             onChange={e => updateQuantity(Number(e.target.value))}
           />
           <Button size="smallIcon" className={``}
+            type="button"
             onClick={() => updateQuantity(quantity + 1)}>
             <Plus />
           </Button>
@@ -65,6 +67,7 @@ const ProductCard = ({ productData, isCart }: ProductCardProps) => {
       </div>
       {!itemInCart() ?
         <Button
+          data-testid="add-to-cart"
           className={`inline-flex justify-center gap-2`}
           size="small"
           background="green"
