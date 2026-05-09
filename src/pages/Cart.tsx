@@ -13,7 +13,7 @@ const Cart = () => {
     <div>
       <PageHeading dataTestId="cart-heading">My Cart</PageHeading>
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
-        {!data ?
+        {data.length === 0 ?
           <Loading /> :
           cartItems.length === 0 ?
             <p className={`flex justify-center text-lg lg:text-2xl`}>No items in cart</p> :

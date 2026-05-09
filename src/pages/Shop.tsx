@@ -11,7 +11,7 @@ const Shop = () => {
     <div>
       <PageHeading dataTestId={""}>My Shop</PageHeading>
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
-        {!data ?
+        {data.length === 0 ?
           <Loading /> :
           <>
             {data.map((product) => {
