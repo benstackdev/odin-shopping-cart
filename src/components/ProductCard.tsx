@@ -6,7 +6,7 @@ import { useCartStore } from "../stores/cartStore";
 import { useState } from "react";
 
 export type ProductCardProps = {
-  productData: ProductType,
+  productData?: ProductType,
   isCart?: boolean;
 };
 
@@ -17,10 +17,14 @@ const ProductCard = ({ productData, isCart }: ProductCardProps) => {
   const removeCartItem = useCartStore((state) => state.removeCartItem);
 
   const itemInCart = () => {
+    if (!productData) return;
     return items.find((item) => item.id === productData.id);
   };
 
-  const [quantity, setQuantity] = useState(itemInCart() ? itemInCart().quantity : 1);
+  const [quantity, setQuantity] = useState(itemInCart() ? itemInCart()!.quantity : 1);
+
+  // productData is async from useData so may be undefined
+  if (!productData) return;
 
   const updateQuantity = (newQuantity: number) => {
     if (newQuantity < 1 || newQuantity > 99) return;

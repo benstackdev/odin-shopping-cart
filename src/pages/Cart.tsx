@@ -4,10 +4,9 @@ import { ProductCard } from "../components/ProductCard";
 import { useData } from "../hooks/useData";
 import { useCartStore } from "../stores/cartStore";
 import type { CartItem } from "../types/cart_item.type";
-import type { ProductType } from "../types/product.type";
 
 const Cart = () => {
-  const { data }: { data: ProductType[]; } = useData("/products");
+  const { data } = useData("/products");
   const cartItems = useCartStore((state) => state.items);
 
   return (

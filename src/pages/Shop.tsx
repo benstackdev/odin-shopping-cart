@@ -9,7 +9,7 @@ const Shop = () => {
 
   return (
     <div>
-      <PageHeading data-testid="shop-heading">My Shop</PageHeading>
+      <PageHeading dataTestId={""}>My Shop</PageHeading>
       <section className={`mt-8 mx-[5%] lg:mx-[25%] grid grid-cols-[repeat(auto-fit,minmax(min(250px,100%),1fr))] gap-4 p-4`}>
         {!data ?
           <Loading /> :
